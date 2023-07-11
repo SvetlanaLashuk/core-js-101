@@ -223,8 +223,20 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM'.split('');
+  const LOWERCASE = 'abcdefghijklmnopqrstuvwxyzabcdefghijklm'.split('');
+  const GAP = 13;
+
+  return str.split('').map((letter) => {
+    if (UPPERCASE.includes(letter)) {
+      return UPPERCASE[UPPERCASE.indexOf(letter) + GAP];
+    }
+    if (LOWERCASE.includes(letter)) {
+      return LOWERCASE[LOWERCASE.indexOf(letter) + GAP];
+    }
+    return letter;
+  }).join('');
 }
 
 /**
